@@ -4,8 +4,10 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    block content
     nav
       ul 
         li: a(href='/') Home
-        li: a(href='/users') Users
-    block content
+        li: a(href='/user') User
+        li: a(href='/about') About
+    
