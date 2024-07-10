@@ -2,7 +2,6 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
@@ -14,7 +13,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -24,6 +22,17 @@ app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/about', aboutRouter);
 
+//Download Image Route
+app.get('/download', (req, res) =>{
+  let file = path.join(__dirname, 'public/images/Eevee.png');
+  res.download(file, 'Eevee.png',  function (err){
+    if (err){
+      console.log('Error downloading image ', err);
+    }
+  })
+});
+
+//Post Request Button
 app.post('/confirm_post', function (req, res){
   //Output in JSON format
   response = {  

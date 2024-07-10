@@ -3,6 +3,14 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+  //Image Source
+  img(src='/images/Eevee.png' alt='Image')
+
+  //Download image Button
+  form(action='/download' method='get')
+    button(type='submit') Image Download
+
   form(action='/confirm_post' method='POST')
     label() Name:
     input(type='text' name='name' id='name')
